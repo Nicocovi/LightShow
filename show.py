@@ -4,7 +4,7 @@
 # Import required Python libraries
 import RPi.GPIO as GPIO
 import time
-from random import randint
+import random
 
 
 # Use BCM GPIO references instead of physical pin numbers
@@ -23,17 +23,21 @@ GPIO.output(10,0)
 GPIO.output(11,0)
 GPIO.output(22,0)
 
-randomVar = randint(10,20)
+random.seed()
 count = 0
-switches = randint(6,10)
-arrayGpio = array([4,9,10,11,22])
+arrayGpio = [4,9,10,11,22]
+switches = random.randint(20,30)
+randomLight = random.randint(0,4)
 
 while count < switches:
 	count = count + 1
+	GPIO.output(arrayGpio[randomLight], 1)
 	time.sleep(1)
-	print ("Counting")
-
-
+	GPIO.output(arrayGpio[randomLight], 0)
+	switches = random.randint(20,30)
+	randomLight = random.randint(0,4)
+	print ("Counting", count)
+print("Finish")
 
        	
 
